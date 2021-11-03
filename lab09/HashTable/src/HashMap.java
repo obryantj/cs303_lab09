@@ -53,6 +53,7 @@ public class HashMap{
         // need a smaller number to fit in the 
         // desired size
         while(index >= this.size){
+            index2 = key % 
             
         }
 
