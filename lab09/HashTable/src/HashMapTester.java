@@ -21,6 +21,7 @@ public class HashMapTester {
         // add the elements to the hashmap
         for(ArrayList<String> a:list_ception){
             long key = Long.parseLong(a.get(0));
+            System.out.println(key);
             String value  = a.get(1);
             HashElement he = new HashElement(key, value);
             hm.put(he);
@@ -42,7 +43,6 @@ public class HashMapTester {
             }
             s_ception.add(inner_list);
         } 
-
         return s_ception;
     }
 

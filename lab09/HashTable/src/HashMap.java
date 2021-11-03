@@ -21,11 +21,11 @@ public class HashMap{
         int index = hashFunction(key);
         
         // check if the space was free
-        if(hash_map[index] == null){
+        if(hash_map[index] == null && index >= 0 && index <= this.size){
             hash_map[index] = he;
             
         }
-        else{ // collision!
+        else{ // collision! or out of bounds
             // call linear probing function
             // overwriting even if something else was there
             index = linearProbe(index, key);
@@ -38,7 +38,8 @@ public class HashMap{
     }
 
     public int linearProbe(int index, long key){
-        return index*7 + 1;
+        int probe = index*7 + 1;
+        return probe;
     }
 
     public int quadraticProbe(int index, int key){
@@ -46,7 +47,15 @@ public class HashMap{
     }
 
     public int hashFunction(long key){
-        int index = (int) key % hash_map.length;
+        long index2 = key % hash_map.length;
+        int index = (int) index2;
+
+        // need a smaller number to fit in the 
+        // desired size
+        while(index >= this.size){
+            
+        }
+
         return index;
     }
 
