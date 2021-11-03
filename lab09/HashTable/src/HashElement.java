@@ -20,5 +20,9 @@ public class HashElement {
         return this.value;
     }
 
+    public String toString(){
+        String s = "\nkey: " + getKey() + " value: " + getValue();
+        return s;
+    }
 
 }

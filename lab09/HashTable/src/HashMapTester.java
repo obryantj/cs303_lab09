@@ -13,23 +13,56 @@ public class HashMapTester {
         String[] input = GetFile.getStringFile(f);
         ArrayList<ArrayList<String>> list_ception = parseThing(input);
         Scanner sc = new Scanner(System.in);
-        sc.close();
-
         // make a new hashmap object
         HashMap hm = new HashMap(100);
-
-        // add the elements to the hashmap
-        for(ArrayList<String> a:list_ception){
-            long key = Long.parseLong(a.get(0));
-            System.out.println(key);
-            String value  = a.get(1);
-            HashElement he = new HashElement(key, value);
-            hm.put(he);
-        }
-
-
+        driver(list_ception,sc, hm);
+        sc.close();
 
     }
+
+    public static void driver(ArrayList<ArrayList<String>> list_ception, Scanner sc, HashMap hm){
+        System.out.println("\n\n**************************");
+        System.out.println("       TESTING MENU");
+        System.out.println("**************************");
+        System.out.println("\nEnter 1 to make hashmap");
+        System.out.println("Enter 2 to search hashmap");
+        System.out.println("Enter 3 to search hashmap using the test file");
+        System.out.println("Enter 4 to exit");
+
+        int choice = sc.nextInt();
+
+        switch(choice){
+            case 1: // make hashmap
+                
+                // add the elements to the hashmap
+                for(ArrayList<String> a:list_ception){
+                    long key = Long.parseLong(a.get(0));
+                    // System.out.println(key);
+                    String value  = a.get(1);
+                    HashElement he = new HashElement(key, value);
+                    hm.put(he);
+                } 
+                break;               
+            case 2: // do searchy
+                System.out.println("Enter search key");
+                long key = sc.nextLong();
+                HashElement fake_he = new HashElement(key, "");
+                HashElement he = hm.get(fake_he);
+                System.out.println("\nHash info: " + he);
+                break;
+            case 3:
+                break;
+            case 4: // exit
+                System.exit(0);
+                break;
+            default:
+                System.out.println("\nEnter a valid command"); 
+                break; 
+        }
+
+        driver(list_ception, sc, hm);
+    }
+
 
     public static ArrayList<ArrayList<String>> parseThing(String[] input){
         int l = input.length;
