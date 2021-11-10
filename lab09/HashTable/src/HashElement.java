@@ -1,10 +1,15 @@
-public class HashElement {
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class HashElement{
     private long key;
     private String value;
+    
 
     public HashElement(long key, String value){
         this.key = key;
         this.value = value;
+ 
     }
 
     public void setKey(int key){
@@ -20,8 +25,8 @@ public class HashElement {
         return this.value;
     }
 
-    public String toString(){
-        String s = "\nkey: " + getKey() + " value: " + getValue();
+    public String toString(){ 
+        String s = " key: " + getKey() + " value: " + getValue();
         return s;
     }
 
