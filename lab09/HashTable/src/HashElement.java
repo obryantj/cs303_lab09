@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
+
 
 public class HashElement{
     private long key;
@@ -26,8 +25,13 @@ public class HashElement{
     }
 
     public String toString(){ 
+        try{
         String s = " key: " + getKey() + " value: " + getValue();
         return s;
+        }
+        catch(NullPointerException npe){
+            return "hash element was null";
+        }
     }
 
 }

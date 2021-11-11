@@ -15,6 +15,7 @@ public class HashMapTester {
 
     }
 
+
     public static void driver4(Scanner sc, HashMap hm, File f){ // file search
         System.out.println("\n\n**************************");
         System.out.println("      PROBING CHOICE");
@@ -23,6 +24,7 @@ public class HashMapTester {
         System.out.println("Enter 2 to use linear probing");
         System.out.println("Enter 3 to use quadratic probing");
         int choice = sc.nextInt();
+        // sc.next(); // this makes it work somehow lol
         String[] input = GetFile.getStringFile(f);
         ArrayList<ArrayList<String>> list_ception3 = parseThing(input);        
         switch(choice){
@@ -33,7 +35,13 @@ public class HashMapTester {
                     String expected_value  = a.get(2);
                     HashElement fake_he2 = new HashElement(search_key, "");
                     HashElement returned_he = hm.get(fake_he2);
-                    String returned_value = returned_he.getValue();
+                    String returned_value = "";
+                    try{
+                        returned_value = returned_he.getValue();
+                    }
+                    catch(NullPointerException npe){
+                        returned_value = "value was null";
+                    }
                     System.out.println("\nFor key: " + search_key + "\nexpected value was: " + expected_value + "\nreturned value was: " + returned_value);
                 } 
                 long end = System.nanoTime();
@@ -46,7 +54,13 @@ public class HashMapTester {
                     String expected_value  = a.get(2);
                     HashElement fake_he2 = new HashElement(search_key, "");
                     HashElement returned_he = hm.linearGet(fake_he2);
-                    String returned_value = returned_he.getValue();
+                    String returned_value = "";
+                    try{
+                        returned_value = returned_he.getValue();
+                    }
+                    catch(NullPointerException npe){
+                        returned_value = "value was null";
+                    }
                     System.out.println("\nFor key: " + search_key + "\nexpected value was: " + expected_value + "\nreturned value was: " + returned_value);
                 } 
                 long end2 = System.nanoTime();
@@ -59,7 +73,13 @@ public class HashMapTester {
                     String expected_value  = a.get(2);
                     HashElement fake_he2 = new HashElement(search_key, "");
                     HashElement returned_he = hm.quadGet(fake_he2);
-                    String returned_value = returned_he.getValue();
+                    String returned_value = "";
+                    try{
+                        returned_value = returned_he.getValue();
+                    }
+                    catch(NullPointerException npe){
+                        returned_value = "value was null";
+                    }
                     System.out.println("\nFor key: " + search_key + "\nexpected value was: " + expected_value + "\nreturned value was: " + returned_value);
                 } 
                 long end3 = System.nanoTime();

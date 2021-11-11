@@ -1,5 +1,5 @@
 import java.util.Arrays;
-import java.util.ArrayList;
+
 
 public class HashMap{
 
@@ -42,6 +42,10 @@ public class HashMap{
     public HashElement get(HashElement fake_hele){
         // have to get it using the hash function
         int index = hashFunction(fake_hele);
+        // check to make sure we didn't return the wrong thing
+        if (fake_hele.getKey() != hash_map[index].getKey()){
+            return null;
+        }
         return hash_map[index];
     }    
 
@@ -53,6 +57,9 @@ public class HashMap{
 
     public HashElement linearGet(HashElement fake_hele){
         int index = linearHashFunction(fake_hele);
+        if (fake_hele.getKey() != hash_map[index].getKey()){
+            return null;
+        }
         return hash_map[index];
     }
 
@@ -63,6 +70,9 @@ public class HashMap{
 
     public HashElement quadGet(HashElement fake_hele){
         int index = quadHashFunction(fake_hele);
+        if (fake_hele.getKey() != hash_map[index].getKey()){
+            return null;
+        }
         return hash_map[index];
     }
 
@@ -72,10 +82,11 @@ public class HashMap{
         int probe = index;
 
         for(int i = 1; i < this.size; i++){
-            probe = (index + i) % this.size; 
+            probe = (probe + i) % this.size; 
             if(probe >= this.size){
                 // reset
                 probe = 0;
+                i = 1;
             }
             if(hash_map[probe] == null){
                 return probe;
@@ -90,10 +101,11 @@ public class HashMap{
     public int quadraticProbe(int index){
         double probe = index;
         for(double i = 1; i < this.size; i++){
-            probe = (index + Math.pow(index, i)) % this.size; 
+            probe = (probe + Math.pow(probe, i)) % this.size; 
             if(probe >= this.size){
                 // reset
                 probe = 0;
+                i = 1;
             }
             if(hash_map[(int)probe] == null){
                 return (int)probe;
